@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" version="XHTML+RDFa 1.0" dir="ltr">
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<title>Custom form</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/misc/jquery.once.js"></script>
+<script type="text/javascript" src="/misc/drupal.js"></script>
+<script type="text/javascript" src="/sites/all/modules/rn_page/custom.js"></script>
+</head>
+<body>
+  <h1>Custom form</h1>
+  <form>
+     <label for="name">Name</label>
+     <input type="text" name="name" placeholder="Name" size="10" maxlength="128" class="form-text" />
+     <br><br>
+     <label for="age">Age</label>
+     <select name="age">
+      <option value="1-12">1-12</option>
+      <option value="13-78">13-18</option>
+      <option value="18-50">18-50</option>
+      <option value="51">>50</option>
+    </select>
+  </form>
+</body>
+</html>
