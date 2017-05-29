@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Code for the rn_page feature.
+ */
+
+include_once 'rn_page.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function rn_page_menu() {
+  $items['drupal-test-task'] = array(
+    'title' => 'Drupal test task',
+    'page callback' => 'rn_page_users',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+function rn_page_users() {
+  $output = '';
+
+  $header = array(
+    array('data' => 'Uid', 'field' => 'u.uid'),
+    array('data' => 'Name', 'field' => 'u.name', 'sort' => 'ASC'),
+    t('Edit link'),
+  );
+
+  $query = db_select('users', 'u')
+    ->extend('PagerDefault')
+    ->extend('TableSort');
+  $query->fields('u', array('uid', 'name'))
+    ->condition('status', 1)
+    ->limit(25)
+    ->orderByHeader($header);
+  $results = $query->execute();
+
+  $rows = array();
+  foreach ($results as $row) {
+    $rows[] = array(
+      $row->uid,
+      l($row->name, 'user/' . $row->uid),
+      l(t('Edit'), 'user/' . $row->uid . '/edit'),
+    );
+  }
+
+  $output .= theme('table', array('header' => $header, 'rows' => $rows));
+  $output .= theme('pager');
+
+  return $output;
+}
